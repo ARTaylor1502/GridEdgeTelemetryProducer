@@ -1,0 +1,48 @@
+## [ Build Artifacts ]
+GridEdgeTelemetryProducer/bin/*
+GridEdgeTelemetryProducer/obj/*
+GridEdgeTelemetryProducer.Tests/bin/*
+GridEdgeTelemetryProducer.Tests/obj/*
+
+## [ IDE - Visual Studio ]
+.vs/
+*.user
+*.userosscache
+*.sln.doccache
+
+## [ IDE - VS Code ]
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+## [ User-specific files ]
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.doccache
+
+## [ OS-specific files ]
+.DS_Store
+Thumbs.db
+
+## [ NuGet ]
+# Restore will pull these back down; no need to commit them
+node_modules/
+packages/
+*.nuget.props
+*.nuget.targets
+
+## [ Test Results & Coverage ]
+TestResults/
+*.sequenced
+*.coverage
+*.opencoverxml
+
+## [ Environment / Secrets ]
+# Important: Don't commit your local connection strings or RabbitMQ passwords
+.env
+appsettings.Development.json

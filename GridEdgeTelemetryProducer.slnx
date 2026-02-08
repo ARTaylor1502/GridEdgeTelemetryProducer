@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="GridEdgeTelemetryProducer/GridEdgeTelemetryProducer.csproj" />
+  <Project Path="GridEdgeTelemetryProducer.Tests/GridEdgeTelemetryProducer.Tests.csproj" />
+</Solution>
