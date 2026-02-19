@@ -7,7 +7,8 @@ using GridEdge.Telemetry.Shared.Contracts;
 public class SimulationWorker(
     IMeterReadingGenerator meterReadingGenerator,
     IOptions<TelemetrySettings> settings,
-    ILogger<SimulationWorker> logger
+    ILogger<SimulationWorker> logger,
+    ITelemetryPublisher publisher
 ) : BackgroundService
 {
     private readonly string meterId = settings.Value.MeterId ?? $"METER-{Guid.NewGuid()}";
@@ -21,10 +22,16 @@ public class SimulationWorker(
             logger.LogInformation("Worker started for Meter: {Id}", meterId);
 
             MeterReadingDto meterReading = meterReadingGenerator.GenerateReading(meterId);
+            try
+            {
+                await publisher.PublishAsync(meterReading);
 
-            string jsonPayload = JsonSerializer.Serialize(meterReading);
-            
-            logger.LogInformation("Reading generated: {Usage}", jsonPayload);
+                logger.LogInformation("Reading generated: {Usage}", JsonSerializer.Serialize(meterReading));
+            } 
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Failed to publish telemetry reading");
+            }
 
             await Task.Delay(TransmissionIntervalMilliSeconds, stoppingToken);
         }
