@@ -1,7 +1,7 @@
 using FluentAssertions;
-using GridEdgeTelemetryProducer.Services.MeterReadingGenerator;
+using GridEdge.Telemetry.Producer.Services.MeterReadingGenerator;
 
-namespace GridEdgeTelemetryProducer.Tests.Services;
+namespace GridEdge.Telemetry.Producer.Tests.Services;
 
 public class MeterReadingGeneratorTests
 {

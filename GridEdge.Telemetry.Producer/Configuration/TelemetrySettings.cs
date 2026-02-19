@@ -1,4 +1,4 @@
-namespace GridEdgeTelemetryProducer.Configuration;
+namespace GridEdge.Telemetry.Producer.Configuration;
 
 public class TelemetrySettings
 {

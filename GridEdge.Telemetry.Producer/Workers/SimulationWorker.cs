@@ -1,7 +1,8 @@
-namespace GridEdgeTelemetryProducer.Workers;
+namespace GridEdge.Telemetry.Producer.Workers;
 
 using System.Text.Json;
-using GridEdgeTelemetryProducer.Services.MeterReadingGenerator;
+using GridEdge.Telemetry.Producer.Services.MeterReadingGenerator;
+using GridEdge.Telemetry.Shared.Contracts;
 
 public class SimulationWorker(
     IMeterReadingGenerator meterReadingGenerator,

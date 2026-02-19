@@ -1,4 +1,5 @@
-using GridEdgeTelemetryProducer.Services.MeterReadingGenerator; 
+using GridEdge.Telemetry.Producer.Services.MeterReadingGenerator; 
+using GridEdge.Telemetry.Shared.Contracts;
 
 var builder = Host.CreateApplicationBuilder(args);
 

@@ -1,4 +1,4 @@
-namespace GridEdgeTelemetryProducer.Services.MeterReadingGenerator;
+namespace GridEdge.Telemetry.Shared.Contracts;
 
 public interface IMeterReadingGenerator
 {

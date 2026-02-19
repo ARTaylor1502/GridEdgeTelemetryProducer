@@ -13,8 +13,11 @@
 
   <ItemGroup>
     <Using Include="Microsoft.Extensions.Options" />
-    <Using Include="GridEdgeTelemetryProducer.Configuration" />
-    <Using Include="GridEdgeTelemetryProducer.Contracts" />
-    <Using Include="GridEdgeTelemetryProducer.Workers" />
+    <Using Include="GridEdge.Telemetry.Producer.Configuration" />
+    <Using Include="GridEdge.Telemetry.Producer.Workers" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GridEdge.Telemetry.Shared\GridEdge.Telemetry.Shared.csproj" />
   </ItemGroup>
 </Project>

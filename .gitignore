@@ -1,8 +1,10 @@
 ## [ Build Artifacts ]
-GridEdgeTelemetryProducer/bin/*
-GridEdgeTelemetryProducer/obj/*
-GridEdgeTelemetryProducer.Tests/bin/*
-GridEdgeTelemetryProducer.Tests/obj/*
+GridEdge.Telemetry.Producer/bin/*
+GridEdge.Telemetry.Producer/obj/*
+GridEdge.Telemetry.Producer.Tests/bin/*
+GridEdge.Telemetry.Producer.Tests/obj/*
+GridEdge.Telemetry.Shared/bin/*
+GridEdge.Telemetry.Shared/obj/*
 
 ## [ IDE - Visual Studio ]
 .vs/

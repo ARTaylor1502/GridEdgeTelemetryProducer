@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../GridEdgeTelemetryProducer/GridEdgeTelemetryProducer.csproj" />
+    <ProjectReference Include="../GridEdge.Telemetry.Producer/GridEdge.Telemetry.Producer.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="GridEdge.Telemetry.Producer/GridEdge.Telemetry.Producer.csproj" />
+  <Project Path="GridEdge.Telemetry.Shared/GridEdge.Telemetry.Shared.csproj" />
+  <Project Path="GridEdge.Telemetry.Producer.Tests/GridEdge.Telemetry.Producer.Tests.csproj" />
+</Solution>
