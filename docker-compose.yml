@@ -1,0 +1,24 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: grid-edge-mq
+    ports:
+      - "5672:5672"   # RabbitMQ Port
+      - "15672:15672" # Management UI Port
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  producer:
+    build:
+      context: .
+      dockerfile: GridEdge.Telemetry.Producer/Dockerfile
+    container_name: telemetry-producer
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    environment:
+      - RabbitMQ__HostName=rabbitmq
+      - RabbitMQ__QueueName=live_telemetry_stream
