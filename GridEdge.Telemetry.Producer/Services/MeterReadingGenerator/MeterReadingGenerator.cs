@@ -33,10 +33,11 @@ public class MeterReadingGenerator: IMeterReadingGenerator
             currentUsageKw = Math.Round(Math.Max(0.0, averageHourlyOffPeakUsageKw + usageFluctuationKw), 2);
         }
 
-        return new MeterReadingDto(
-            meterId, 
-            currentUsageKw,
-            currentTime
-        );
+        return new MeterReadingDto
+        {
+            MeterId = meterId,
+            UsageKwh = currentUsageKw,
+            Timestamp = currentTime
+        };
     }
 }

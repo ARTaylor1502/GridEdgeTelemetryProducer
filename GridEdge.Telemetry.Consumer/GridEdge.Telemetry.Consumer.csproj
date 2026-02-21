@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-GrieEdge.Telemetry.Consumer-c9d9423a-98d1-4a76-8115-60780ba79eb3</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.3">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.2" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0" />
+    <PackageReference Include="RabbitMQ.Client" Version="7.2.0" />
+  </ItemGroup>
+
+    <ItemGroup>
+    <Using Include="Microsoft.Extensions.Options" />
+    <Using Include="GridEdge.Telemetry.Consumer.Configuration" />
+    <Using Include="GridEdge.Telemetry.Consumer.Workers" />
+    <Using Include="GridEdge.Telemetry.Consumer.Services" />
+    <Using Include="GridEdge.Telemetry.Shared.Contracts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GridEdge.Telemetry.Shared\GridEdge.Telemetry.Shared.csproj" />
+  </ItemGroup>
+</Project>
