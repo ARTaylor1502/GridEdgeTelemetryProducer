@@ -7,6 +7,8 @@ GridEdge.Telemetry.Shared/bin/*
 GridEdge.Telemetry.Shared/obj/*
 GridEdge.Telemetry.Consumer/bin/*
 GridEdge.Telemetry.Consumer/obj/*
+GridEdge.Telemetry.Consumer.Tests/bin/*
+GridEdge.Telemetry.Consumer.Tests/obj/*
 
 ## [ IDE - Visual Studio ]
 .vs/

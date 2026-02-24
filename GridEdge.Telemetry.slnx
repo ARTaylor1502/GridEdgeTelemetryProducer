@@ -3,4 +3,5 @@
   <Project Path="GridEdge.Telemetry.Shared/GridEdge.Telemetry.Shared.csproj" />
   <Project Path="GridEdge.Telemetry.Producer.Tests/GridEdge.Telemetry.Producer.Tests.csproj" />
   <Project Path="GridEdge.Telemetry.Consumer/GridEdge.Telemetry.Consumer.csproj" />
+  <Project Path="GridEdge.Telemetry.Consumer.Tests/GridEdge.Telemetry.Consumer.Tests.csproj" />
 </Solution>
