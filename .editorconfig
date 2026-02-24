@@ -1,0 +1,63 @@
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+insert_final_newline = true
+trim_trailing_whitespace = true
+charset = utf-8
+
+[*.{cs,vb}]
+
+# Use File-Scoped Namespaces (removes {} around the whole file)
+csharp_style_namespace_declarations = file_scoped:warning
+
+# Use Primary Constructors where possible
+csharp_style_prefer_primary_constructors = true:suggestion
+
+# Use 'var' when the type is obvious (e.g., var x = new List<int>())
+csharp_style_var_when_type_is_apparent = true:suggestion
+csharp_style_var_for_built_in_types = true:silent
+
+# Use Target-typed 'new' (e.g., List<int> x = new();)
+csharp_style_implicit_object_creation_when_type_is_apparent = true:suggestion
+
+# Prefer modern collection expressions [] instead of new[] or new List()
+dotnet_style_prefer_collection_expression = when_types_loosely_match:suggestion
+
+# Place 'using' directives OUTSIDE the namespace (top of file)
+csharp_using_directive_placement = outside_namespace:warning
+
+# Group 'System' usings first, then alphabetize, then add a blank line
+dotnet_sort_system_usings_first = true
+dotnet_separate_import_directive_groups = true
+
+
+# ALL private fields (static or instance) must start with _camelCase
+dotnet_naming_rule.private_fields_underscore.severity = warning
+dotnet_naming_rule.private_fields_underscore.symbols = private_fields
+dotnet_naming_rule.private_fields_underscore.style = underscore_camel
+
+dotnet_naming_symbols.private_fields.applicable_kinds = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities = private, protected, private_protected
+
+dotnet_naming_style.underscore_camel.capitalization = camel_case
+dotnet_naming_style.underscore_camel.required_prefix = _
+
+# Constants (private or public) should be PascalCase
+dotnet_naming_rule.constants_pascal.severity = warning
+dotnet_naming_rule.constants_pascal.symbols = constant_fields
+dotnet_naming_rule.constants_pascal.style = pascal_case
+
+dotnet_naming_symbols.constant_fields.applicable_kinds = field
+dotnet_naming_symbols.constant_fields.required_modifiers = const
+
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+
+# Public members (Properties, Methods) must be PascalCase
+dotnet_naming_rule.public_members_pascal.severity = warning
+dotnet_naming_rule.public_members_pascal.symbols = public_symbols
+dotnet_naming_rule.public_members_pascal.style = pascal_case
+
+dotnet_naming_symbols.public_symbols.applicable_kinds = property, method, event, class, struct, enum, delegate
+dotnet_naming_symbols.public_symbols.applicable_accessibilities = public, internal, protected, protected_internal
