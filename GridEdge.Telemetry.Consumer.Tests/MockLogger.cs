@@ -1,8 +1,8 @@
+using System;
+
 using Microsoft.Extensions.Logging;
 
 using Moq;
-
-using System;
 
 namespace GridEdge.Telemetry.Consumer.Tests;
 

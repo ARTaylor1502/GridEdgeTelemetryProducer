@@ -1,19 +1,18 @@
+using FluentAssertions;
+
+using GridEdge.Telemetry.Consumer.Entities;
+using GridEdge.Telemetry.Consumer.Infrastructure.Persistence;
+using GridEdge.Telemetry.Consumer.Services;
+using GridEdge.Telemetry.Consumer.Tests;
+using GridEdge.Telemetry.Shared.Contracts;
+
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+
 using Moq;
 
 using Xunit;
-
-using FluentAssertions;
-
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
-
-using GridEdge.Telemetry.Consumer.Services;
-using GridEdge.Telemetry.Consumer.Infrastructure.Persistence;
-using GridEdge.Telemetry.Shared.Contracts;
-using GridEdge.Telemetry.Consumer.Entities;
-
-using GridEdge.Telemetry.Consumer.Tests;
 
 public class TelemetryProcessorTests : TelemetryTestBase
 {
