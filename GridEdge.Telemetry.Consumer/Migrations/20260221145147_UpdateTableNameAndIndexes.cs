@@ -1,22 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace GridEdge.Telemetry.Consumer.Migrations
+namespace GridEdge.Telemetry.Consumer.Migrations;
+
+/// <inheritdoc />
+public partial class UpdateTableNameAndIndexes : Migration
 {
     /// <inheritdoc />
-    public partial class UpdateTableNameAndIndexes : Migration
+    protected override void Up(MigrationBuilder migrationBuilder)
     {
-        /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
 
-        }
+    }
 
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
+    /// <inheritdoc />
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
 
-        }
     }
 }

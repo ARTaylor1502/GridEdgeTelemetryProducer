@@ -1,6 +1,7 @@
+using GridEdge.Telemetry.Consumer.Entities;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using GridEdge.Telemetry.Consumer.Entities;
 
 namespace GridEdge.Telemetry.Consumer.Infrastructure.Persistence.Configurations;
 

@@ -1,8 +1,9 @@
 using GridEdge.Telemetry.Consumer;
-using GridEdge.Telemetry.Consumer.Services;
 using GridEdge.Telemetry.Consumer.Configuration;
-using GridEdge.Telemetry.Consumer.Infrastructure.RabbitMQ;
 using GridEdge.Telemetry.Consumer.Infrastructure.Persistence;
+using GridEdge.Telemetry.Consumer.Infrastructure.RabbitMQ;
+using GridEdge.Telemetry.Consumer.Services;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -13,7 +14,7 @@ builder.Services.Configure<DatabaseSettings>(
 builder.Services.AddDbContext<TelemetryDbContext>((serviceProvider, options) =>
 {
     var dbSettings = serviceProvider.GetRequiredService<IOptions<DatabaseSettings>>().Value;
-    
+
     options.UseNpgsql(dbSettings.Postgres.ConnectionString);
 });
 

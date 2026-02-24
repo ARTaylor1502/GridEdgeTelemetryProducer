@@ -1,11 +1,12 @@
-using Microsoft.EntityFrameworkCore;
-using GridEdge.Telemetry.Consumer.Infrastructure.Persistence;
 using GridEdge.Telemetry.Consumer.Entities;
+using GridEdge.Telemetry.Consumer.Infrastructure.Persistence;
+
+using Microsoft.EntityFrameworkCore;
 
 namespace GridEdge.Telemetry.Consumer.Services;
 
 public class TelemetryProcessor(
-    ILogger<TelemetryProcessor> logger, 
+    ILogger<TelemetryProcessor> logger,
     IServiceScopeFactory scopeFactory) : ITelemetryProcessor
 {
     public async Task ProcessTelemetryDataAsync(MeterReadingDto reading, CancellationToken cancellationToken)
@@ -17,8 +18,8 @@ public class TelemetryProcessor(
         if (exists)
         {
             logger.LogInformation("Skipping storage of MeterReading #{Id}, already exists: ", reading.Id);
-            return; 
-        } 
+            return;
+        }
 
         var meterReading = new MeterReading
         {
@@ -30,7 +31,7 @@ public class TelemetryProcessor(
 
         dbContext.MeterReadings.Add(meterReading);
         await dbContext.SaveChangesAsync(cancellationToken);
-        
+
         logger.LogInformation("Stored MeterReading: {Id}", reading.Id);
     }
 }

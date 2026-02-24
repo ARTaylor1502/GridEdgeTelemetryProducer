@@ -1,6 +1,8 @@
 using System.Text;
 using System.Text.Json;
+
 using Microsoft.Extensions.Options;
+
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using RabbitMQ.Client.Exceptions;
@@ -11,11 +13,11 @@ public class RabbitMQConsumer(
     IOptions<RabbitMQSettings> options,
     ILogger<RabbitMQConsumer> logger,
     ITelemetryProcessor processor
-        
+
 ) : ITelemetryConsumer, IAsyncDisposable
 {
-    private IConnection? connection;
-    private IChannel? channel;
+    private IConnection? _connection;
+    private IChannel? _channel;
     private CancellationToken _cancellationToken;
 
     public async Task StartConsumingTelemetryDataAsync(CancellationToken cancellationToken)
@@ -28,31 +30,29 @@ public class RabbitMQConsumer(
         {
             try
             {
-                connection = await factory.CreateConnectionAsync();
-                channel = await connection.CreateChannelAsync();
+                _connection = await factory.CreateConnectionAsync();
+                _channel = await _connection.CreateChannelAsync();
 
-                if (channel is not { IsOpen: true })
+                if (_channel is not { IsOpen: true })
                 {
                     logger.LogCritical("RabbitMQ Channel is closed or null. Processing aborted.");
                     return;
                 }
 
-                await channel.QueueDeclareAsync(
+                await _channel.QueueDeclareAsync(
                     queue: options.Value.QueueName,
                     durable: true,
                     exclusive: false,
                     autoDelete: false
                 );
 
-                var consumer = new AsyncEventingBasicConsumer(channel);
-        
+                var consumer = new AsyncEventingBasicConsumer(_channel);
+
                 consumer.ReceivedAsync += HandleMessageReceieved;
 
-                await channel.BasicConsumeAsync(options.Value.QueueName, autoAck: false, consumer);
-            
-                logger.LogInformation("Waiting for messages in queue: {Queue}", options.Value.QueueName);  
+                await _channel.BasicConsumeAsync(options.Value.QueueName, autoAck: false, consumer);
 
-                break;     
+                break;
             }
             catch (BrokerUnreachableException ex)
             {
@@ -75,22 +75,22 @@ public class RabbitMQConsumer(
                 await processor.ProcessTelemetryDataAsync(reading, _cancellationToken);
             }
 
-            await channel!.BasicAckAsync(ea.DeliveryTag, multiple: false, _cancellationToken);
+            await _channel!.BasicAckAsync(ea.DeliveryTag, multiple: false, _cancellationToken);
         }
         catch (Exception ex)
         {
             logger.LogError(ex, "Failed to process message. Sending Nack.");
-            if (channel is { IsOpen: true })
+            if (_channel is { IsOpen: true })
             {
-                await channel.BasicNackAsync(ea.DeliveryTag, multiple: false, requeue: true, _cancellationToken);
+                await _channel.BasicNackAsync(ea.DeliveryTag, multiple: false, requeue: true, _cancellationToken);
             }
         }
     }
 
     public async ValueTask DisposeAsync()
     {
-        if (channel is not null) await channel.CloseAsync();
-        if (connection is not null) await connection.CloseAsync();
+        if (_channel is not null) await _channel.CloseAsync();
+        if (_connection is not null) await _connection.CloseAsync();
 
         // Suppress finalization to be memory efficient
         GC.SuppressFinalize(this);

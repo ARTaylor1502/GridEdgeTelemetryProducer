@@ -1,5 +1,6 @@
-using Microsoft.EntityFrameworkCore;
 using GridEdge.Telemetry.Consumer.Entities;
+
+using Microsoft.EntityFrameworkCore;
 
 namespace GridEdge.Telemetry.Consumer.Infrastructure.Persistence;
 

@@ -1,4 +1,5 @@
 using FluentAssertions;
+
 using GridEdge.Telemetry.Producer.Services.MeterReadingGenerator;
 
 namespace GridEdge.Telemetry.Producer.Tests.Services;
@@ -14,7 +15,7 @@ public class MeterReadingGeneratorTests
         var result = generator.GenerateReading(meterId);
 
         result.MeterId.Should().Be(meterId);
-        result.UsageKw.Should().BeGreaterThanOrEqualTo(0);
+        result.UsageKwh.Should().BeGreaterThanOrEqualTo(0);
         result.Timestamp.Should().BeWithin(TimeSpan.FromSeconds(1)).Before(DateTime.UtcNow);
     }
 
@@ -29,6 +30,6 @@ public class MeterReadingGeneratorTests
         var generator = new MeterReadingGenerator(fakeTime);
         var result = generator.GenerateReading("TEST_METER_1");
 
-        result.UsageKw.Should().BeInRange(expectedMinUsage, expectedMaxUsage);
+        result.UsageKwh.Should().BeInRange(expectedMinUsage, expectedMaxUsage);
     }
 }

@@ -1,8 +1,10 @@
-namespace GridEdge.Telemetry.Producer.Workers;
 
 using System.Text.Json;
+
 using GridEdge.Telemetry.Producer.Services.MeterReadingGenerator;
 using GridEdge.Telemetry.Shared.Contracts;
+
+namespace GridEdge.Telemetry.Producer.Workers;
 
 public class SimulationWorker(
     IMeterReadingGenerator meterReadingGenerator,
@@ -11,29 +13,29 @@ public class SimulationWorker(
     ITelemetryPublisher publisher
 ) : BackgroundService
 {
-    private readonly string meterId = settings.Value.MeterId ?? $"METER-{Guid.NewGuid()}";
+    private readonly string _meterId = settings.Value.MeterId ?? $"METER-{Guid.NewGuid()}";
 
-    private readonly int TransmissionIntervalMilliSeconds = settings.Value.TransmissionIntervalMilliSeconds;
+    private readonly int _transmissionIntervalMilliSeconds = settings.Value.TransmissionIntervalMilliSeconds;
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            logger.LogInformation("Worker started for Meter: {Id}", meterId);
+            logger.LogInformation("Worker started for Meter: {Id}", _meterId);
 
-            MeterReadingDto meterReading = meterReadingGenerator.GenerateReading(meterId);
+            MeterReadingDto meterReading = meterReadingGenerator.GenerateReading(_meterId);
             try
             {
                 await publisher.PublishAsync(meterReading);
 
                 logger.LogInformation("Reading generated: {Usage}", JsonSerializer.Serialize(meterReading));
-            } 
+            }
             catch (Exception ex)
             {
                 logger.LogError(ex, "Failed to publish telemetry reading");
             }
 
-            await Task.Delay(TransmissionIntervalMilliSeconds, stoppingToken);
+            await Task.Delay(_transmissionIntervalMilliSeconds, stoppingToken);
         }
     }
 }

@@ -1,42 +1,45 @@
-using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;
+
 using GridEdge.Telemetry.Shared.Contracts;
-using Microsoft.Extensions.Options;
+
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+
+using RabbitMQ.Client;
 
 namespace GridEdge.Telemetry.Producer.Infrastructure;
 
 public class RabbitMQPublisher : ITelemetryPublisher, IAsyncDisposable
 {
-    private readonly ConnectionFactory factory;
-    private readonly string queueName;
-    private readonly ILogger<RabbitMQPublisher> logger;
-    private IConnection? connection;
-    private IChannel? channel;
+    private readonly ConnectionFactory _factory;
+    private readonly string _queueName;
+    private readonly ILogger<RabbitMQPublisher> _logger;
+    private IConnection? _connection;
+    private IChannel? _channel;
 
 
     public RabbitMQPublisher(
         IOptions<RabbitMQSettings> options,
-        ILogger<RabbitMQPublisher> _logger
+        ILogger<RabbitMQPublisher> logger
     )
     {
-        factory = new ConnectionFactory { HostName = options.Value.HostName };
-        queueName = options.Value.QueueName;
-        logger = _logger;
+        _factory = new ConnectionFactory { HostName = options.Value.HostName };
+        _queueName = options.Value.QueueName;
+        _logger = logger;
     }
 
     public async Task PublishAsync(MeterReadingDto reading)
     {
-        if (connection == null)
+        if (_channel == null)
         {
-            connection = await factory.CreateConnectionAsync();
-            channel = await connection.CreateChannelAsync();
+            _connection = await _factory.CreateConnectionAsync();
+            _channel = await _connection.CreateChannelAsync();
 
-            await channel.QueueDeclareAsync(
-                queue: queueName, 
-                durable: true, 
-                exclusive: false, 
+            await _channel.QueueDeclareAsync(
+                queue: _queueName,
+                durable: true,
+                exclusive: false,
                 autoDelete: false
             );
         }
@@ -44,27 +47,27 @@ public class RabbitMQPublisher : ITelemetryPublisher, IAsyncDisposable
         var json = JsonSerializer.Serialize(reading);
         var body = Encoding.UTF8.GetBytes(json);
 
-        await channel.BasicPublishAsync(
+        await _channel.BasicPublishAsync(
             exchange: string.Empty,
-            routingKey: queueName,
+            routingKey: _queueName,
             body: body
         );
 
-        logger.LogInformation("Message sent to {Queue}", queueName);
+        _logger.LogInformation("Message sent to {Queue}", _queueName);
     }
 
     public async ValueTask DisposeAsync()
     {
-        if (channel is not null)
+        if (_channel is not null)
         {
-            await channel.CloseAsync();
+            await _channel.CloseAsync();
         }
 
-        if (connection is not null)
+        if (_connection is not null)
         {
-            await connection.CloseAsync();
+            await _connection.CloseAsync();
         }
-        
+
         // Suppress finalization to be memory efficient
         GC.SuppressFinalize(this);
     }
