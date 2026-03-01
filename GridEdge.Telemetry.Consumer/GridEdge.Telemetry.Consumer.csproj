@@ -15,7 +15,6 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.2" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0" />
     <PackageReference Include="RabbitMQ.Client" Version="7.2.0" />
   </ItemGroup>
 
@@ -29,5 +28,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GridEdge.Telemetry.Shared\GridEdge.Telemetry.Shared.csproj" />
+    <ProjectReference Include="..\GridEdge.Telemetry.Infrastructure\GridEdge.Telemetry.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

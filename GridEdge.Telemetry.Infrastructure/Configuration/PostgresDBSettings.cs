@@ -1,4 +1,4 @@
-namespace GridEdge.Telemetry.Consumer.Configuration;
+namespace GridEdge.Telemetry.Infrastructure.Configuration;
 
 public class PostgresDBSettings
 {

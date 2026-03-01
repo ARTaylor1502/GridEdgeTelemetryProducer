@@ -1,4 +1,4 @@
-using GridEdge.Telemetry.Consumer.Infrastructure.Persistence;
+using GridEdge.Telemetry.Infrastructure.Persistence;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

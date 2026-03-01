@@ -1,8 +1,8 @@
-using GridEdge.Telemetry.Consumer.Entities;
+using GridEdge.Telemetry.Infrastructure.Entities;
 
 using Microsoft.EntityFrameworkCore;
 
-namespace GridEdge.Telemetry.Consumer.Infrastructure.Persistence;
+namespace GridEdge.Telemetry.Infrastructure.Persistence;
 
 public class TelemetryDbContext(DbContextOptions<TelemetryDbContext> options) : DbContext(options)
 {

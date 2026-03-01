@@ -1,4 +1,4 @@
-namespace GridEdge.Telemetry.Consumer.Entities;
+namespace GridEdge.Telemetry.Infrastructure.Entities;
 
 public class MeterReading
 {

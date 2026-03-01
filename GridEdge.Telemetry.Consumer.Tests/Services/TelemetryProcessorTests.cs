@@ -1,7 +1,7 @@
 using FluentAssertions;
 
-using GridEdge.Telemetry.Consumer.Entities;
-using GridEdge.Telemetry.Consumer.Infrastructure.Persistence;
+using GridEdge.Telemetry.Infrastructure.Entities;
+using GridEdge.Telemetry.Infrastructure.Persistence;
 using GridEdge.Telemetry.Consumer.Services;
 using GridEdge.Telemetry.Consumer.Tests;
 using GridEdge.Telemetry.Shared.Contracts;

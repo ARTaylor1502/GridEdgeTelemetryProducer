@@ -1,6 +1,7 @@
 using GridEdge.Telemetry.Consumer;
 using GridEdge.Telemetry.Consumer.Configuration;
-using GridEdge.Telemetry.Consumer.Infrastructure.Persistence;
+using GridEdge.Telemetry.Infrastructure.Configuration;
+using GridEdge.Telemetry.Infrastructure.Persistence;
 using GridEdge.Telemetry.Consumer.Infrastructure.RabbitMQ;
 using GridEdge.Telemetry.Consumer.Services;
 

@@ -1,9 +1,9 @@
-using GridEdge.Telemetry.Consumer.Entities;
+using GridEdge.Telemetry.Infrastructure.Entities;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace GridEdge.Telemetry.Consumer.Infrastructure.Persistence.Configurations;
+namespace GridEdge.Telemetry.Infrastructure.Persistence.Configurations;
 
 public class MeterReadingConfiguration : IEntityTypeConfiguration<MeterReading>
 {
