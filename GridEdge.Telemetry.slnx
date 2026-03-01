@@ -1,7 +1,9 @@
 <Solution>
   <Project Path="GridEdge.Telemetry.Producer/GridEdge.Telemetry.Producer.csproj" />
   <Project Path="GridEdge.Telemetry.Shared/GridEdge.Telemetry.Shared.csproj" />
+  <Project Path="GridEdge.Telemetry.Infrastructure/GridEdge.Telemetry.Infrastructure.csproj" />
   <Project Path="GridEdge.Telemetry.Producer.Tests/GridEdge.Telemetry.Producer.Tests.csproj" />
   <Project Path="GridEdge.Telemetry.Consumer/GridEdge.Telemetry.Consumer.csproj" />
+  <Project Path="GridEdge.Telemetry.Api/GridEdge.Telemetry.Api.csproj" />
   <Project Path="GridEdge.Telemetry.Consumer.Tests/GridEdge.Telemetry.Consumer.Tests.csproj" />
 </Solution>

@@ -1,0 +1,20 @@
+@HostAddress = http://localhost:5050
+
+### Get the latest 10 readings
+GET {{HostAddress}}/api/readings?limit=10
+
+### Get "Page 2" (skip 10, take 10)
+GET {{HostAddress}}/api/readings?limit=10&offset=10
+
+### Get readings for a specific date range
+GET {{HostAddress}}/api/readings?from=2026-03-01T00:00:00Z&to=2026-03-01T23:59:59Z
+
+
+### Get the latest 5 readings for Meter "A1"
+GET {{HostAddress}}/api/readings/A1?limit=5
+
+### Get "Page 3" of readings for Meter "B2"
+GET {{HostAddress}}/api/readings/B2?limit=10&offset=20
+
+### Get readings for Meter "A1" from a specific date range
+GET {{HostAddress}}/api/readings/A1?from=2026-03-01T12:00:00Z&to=2026-03-01T13:00:00Z

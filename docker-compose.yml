@@ -34,6 +34,15 @@ services:
       environment:
         - RabbitMQ__HostName=rabbitmq
         - RabbitMQ__QueueName=live_telemetry_stream
+
+  telemetry-api:
+    build:
+      context: .
+      dockerfile: GridEdge.Telemetry.Api/Dockerfile
+    ports:
+      - "5050:8080"
+    depends_on:
+      - postgres
         
   postgres:
     image: postgres:16-alpine

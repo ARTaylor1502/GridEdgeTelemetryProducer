@@ -11,6 +11,8 @@ GridEdge.Telemetry.Consumer.Tests/bin/*
 GridEdge.Telemetry.Consumer.Tests/obj/*
 GridEdge.Telemetry.Infrastructure/bin/*
 GridEdge.Telemetry.Infrastructure/obj/*
+GridEdge.Telemetry.Api/bin/*
+GridEdge.Telemetry.Api/obj/*
 
 ## [ IDE - Visual Studio ]
 .vs/
