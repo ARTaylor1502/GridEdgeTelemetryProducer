@@ -13,6 +13,10 @@ GridEdge.Telemetry.Infrastructure/bin/*
 GridEdge.Telemetry.Infrastructure/obj/*
 GridEdge.Telemetry.Api/bin/*
 GridEdge.Telemetry.Api/obj/*
+GridEdge.Telemetry.UI/GridEdge.Telemetry.UI/bin/*
+GridEdge.Telemetry.UI/GridEdge.Telemetry.UI/obj/*
+GridEdge.Telemetry.UI/GridEdge.Telemetry.UI.Client/bin/*
+GridEdge.Telemetry.UI/GridEdge.Telemetry.UI.Client/obj/*
 
 ## [ IDE - Visual Studio ]
 .vs/

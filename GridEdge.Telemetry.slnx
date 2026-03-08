@@ -4,6 +4,10 @@
   <Project Path="GridEdge.Telemetry.Infrastructure/GridEdge.Telemetry.Infrastructure.csproj" />
   <Project Path="GridEdge.Telemetry.Producer.Tests/GridEdge.Telemetry.Producer.Tests.csproj" />
   <Project Path="GridEdge.Telemetry.Consumer/GridEdge.Telemetry.Consumer.csproj" />
+  <Folder Name="/GridEdge.Telemetry.UI/">
+    <Project Path="GridEdge.Telemetry.UI/GridEdge.Telemetry.UI.Client/GridEdge.Telemetry.UI.Client.csproj" />
+    <Project Path="GridEdge.Telemetry.UI/GridEdge.Telemetry.UI/GridEdge.Telemetry.UI.csproj" />
+  </Folder>
   <Project Path="GridEdge.Telemetry.Api/GridEdge.Telemetry.Api.csproj" />
   <Project Path="GridEdge.Telemetry.Consumer.Tests/GridEdge.Telemetry.Consumer.Tests.csproj" />
 </Solution>

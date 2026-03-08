@@ -1,0 +1,37 @@
+﻿@page "/dashboard"
+@using GridEdge.Telemetry.Shared.Contracts
+@using ApexCharts
+@inject PersistentComponentState ApplicationState
+@inject HttpClient Http
+@rendermode InteractiveAuto
+
+<PageTitle>Telemetry Dashboard</PageTitle>
+
+<h1>Live Meter Readings</h1>
+
+@if (readings == null)
+{
+    <p><em>Loading telemetry data...</em></p>
+}
+else
+{
+    <ApexChart TItem="MeterReadingDto" Title="Live Grid Load (kW)">
+        <ApexPointSeries
+            TItem="MeterReadingDto"
+            Items="readings"
+            Name="Power Consumption"
+            SeriesType="SeriesType.Line"
+            XValue="@(e => e.Timestamp.ToLocalTime().ToString("HH:mm:ss"))"
+            YValue="@(e => (decimal)e.UsageKwh)" 
+        />
+    </ApexChart>
+}
+
+@code {
+    private List<MeterReadingDto>? readings;
+
+    protected override async Task OnInitializedAsync()
+    {        
+        readings = await Http.GetFromJsonAsync<List<MeterReadingDto>>("api/meter-readings");
+    }
+}

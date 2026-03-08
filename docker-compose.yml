@@ -43,6 +43,23 @@ services:
       - "5050:8080"
     depends_on:
       - postgres
+    environment:
+      - AllowedOrigins=http://localhost:8080,http://localhost:5070
+
+  telemetry-ui:
+    build:
+      context: .
+      dockerfile: GridEdge.Telemetry.UI/Dockerfile
+    ports:
+      - "8080:5070"
+    depends_on:
+      - postgres
+      - telemetry-api
+    environment:
+      - ApiSettings__InternalBaseUrl=http://telemetry-api:8080
+      - ApiSettings__ExternalBaseUrl=http://localhost:5050
+      - ASPNETCORE_HTTP_PORTS=5070
+      - ASPNETCORE_ENVIRONMENT=Development
         
   postgres:
     image: postgres:16-alpine

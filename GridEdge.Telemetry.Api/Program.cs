@@ -32,6 +32,18 @@ builder.Services.AddHealthChecks()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var allowedOrigins = builder.Configuration["AllowedOrigins"]?.Split(',') ?? new[] { "http://localhost:5070" };
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowBlazorUI", policy =>
+    {
+        policy.WithOrigins(allowedOrigins)
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
 
 //run migrations if necessary to db
@@ -58,6 +70,8 @@ using (var scope = app.Services.CreateScope())
         }
     }
 }
+
+app.UseCors("AllowBlazorUI");
 
 //Redoc setup
 app.UseSwagger();
