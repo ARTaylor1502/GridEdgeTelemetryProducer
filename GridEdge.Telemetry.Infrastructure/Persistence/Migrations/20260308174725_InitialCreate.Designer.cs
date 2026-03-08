@@ -9,10 +9,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace GridEdge.Telemetry.Consumer.Migrations
+namespace GridEdge.Telemetry.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(TelemetryDbContext))]
-    [Migration("20260221144141_InitialCreate")]
+    [Migration("20260308174725_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

@@ -3,20 +3,17 @@ using System;
 using GridEdge.Telemetry.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace GridEdge.Telemetry.Consumer.Migrations
+namespace GridEdge.Telemetry.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(TelemetryDbContext))]
-    [Migration("20260221145147_UpdateTableNameAndIndexes")]
-    partial class UpdateTableNameAndIndexes
+    partial class TelemetryDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

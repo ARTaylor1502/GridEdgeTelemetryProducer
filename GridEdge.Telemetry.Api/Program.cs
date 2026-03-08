@@ -20,7 +20,10 @@ builder.Services.Configure<DatabaseSettings>(
 builder.Services.AddDbContext<TelemetryDbContext>((serviceProvider, options) =>
 {
     var dbSettings = serviceProvider.GetRequiredService<IOptions<DatabaseSettings>>().Value;
-    options.UseNpgsql(dbSettings.Postgres.ConnectionString);
+    options.UseNpgsql(
+        dbSettings.Postgres.ConnectionString,
+        x => x.MigrationsAssembly("GridEdge.Telemetry.Infrastructure")
+    );
 });
 
 builder.Services.AddHealthChecks()
@@ -30,6 +33,31 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+//run migrations if necessary to db
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<TelemetryDbContext>();
+
+    int retryCount = 0;
+    while (retryCount < 5)
+    {
+        Console.WriteLine($"Attempt to connect to database {retryCount++}");
+
+        try
+        {
+            await context.Database.MigrateAsync();
+            Console.WriteLine("Database migration successful.");
+            break;
+        }
+        catch (Exception ex)
+        {
+            retryCount++;
+            Console.WriteLine($"Database not ready (attempt {retryCount}). Waiting...");
+            await Task.Delay(2000);
+        }
+    }
+}
 
 //Redoc setup
 app.UseSwagger();
